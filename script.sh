@@ -67,4 +67,6 @@ sudo ip netns exec H1_2 addr add 192.168.1.2/24 dev veth1_2
 sudo ip netns exec H2_2 addr add 192.168.2.1/24 dev veth2_1
 sudo ip netns exec H2_2 addr add 192.168.2.2/24 dev veth2_2
 
+#adesso faccio un ping  un altro host 
 sudo ip netns exec H1_1 ping -c 5 192.168.1.2
+
