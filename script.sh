@@ -54,3 +54,8 @@ sudo ip netns exec H1_1 ip -c link
 #con questo vedo quale è l'interfaccia collegata
 sudo ip netns exec H1_1 ip link set eth1_1 up
 #basta fare questa operazione una sola volta e lo switch andrà up
+sudo ip netns exec H1_2 ip link set eth1_2 up
+sudo ip netns exec H2_1 ip link set eth2_1 up
+sudo ip netns exec H2_2 ip link set eth2_2 up
+ip -c l
+#adesso vedremo che tutte le porte sono up
