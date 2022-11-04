@@ -60,3 +60,9 @@ sudo ip netns exec H2_1 ip link set eth2_1 up
 sudo ip netns exec H2_2 ip link set eth2_2 up
 ip -c l
 #adesso vedremo che tutte le porte sono up
+
+#vado ad assegnare gli indirizzi agli host
+sudo ip netns exec H1_1 addr add 192.168.1.1/24 dev veth1_1
+sudo ip netns exec H1_2 addr add 192.168.1.2/24 dev veth1_2
+sudo ip netns exec H2_2 addr add 192.168.2.1/24 dev veth2_1
+sudo ip netns exec H2_2 addr add 192.168.2.2/24 dev veth2_2
