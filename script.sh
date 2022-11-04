@@ -1,4 +1,5 @@
 #inizio con lo script in bash
+#sudo chmod +x nomescript.sh per permettere di avviarlo 
 
 sudo ip netns add H1_1
 sudo ip netns add H1_2
