@@ -1,6 +1,5 @@
 #inizio con lo script in bash
-#sudo chmod +x nomescript.sh per permettere di avviarlo 
-
+#/bin/root
 sudo ip netns add H1_1
 sudo ip netns add H1_2
 sudo ip netns add H2_1
@@ -61,11 +60,14 @@ sudo ip netns exec H2_2 ip link set eth2_2 up
 ip -c l
 #adesso vedremo che tutte le porte sono up
 
-#vado ad assegnare gli indirizzi agli host
-sudo ip netns exec H1_1 addr add 192.168.1.1/24 dev veth1_1
-sudo ip netns exec H1_2 addr add 192.168.1.2/24 dev veth1_2
-sudo ip netns exec H2_2 addr add 192.168.2.1/24 dev veth2_1
-sudo ip netns exec H2_2 addr add 192.168.2.2/24 dev veth2_2
+#vado a inserire il primo indirizzo ip nella porta veth1_1 collegata al pc 1
+sudo ip netns exec H1_1 ip addr add 192.168.1.1/24 dev veth1_1
+
+#vado a vedere se l'indirizzo ip è stato inserito corretamente
+sudo ip netns exec H1_1 ip -c a
+sudo ip netns exec H1_2 ip addr add 192.168.1.2/24 dev veth1_2
+sudo ip netns exec H2_1 ip addr add 192.168.2.1/24 dev veth2_1
+sudo ip netns exec H2_2 ip addr add 192.168.2.2/24 dev veth2_2
 
 #adesso faccio un ping  un altro host 
 sudo ip netns exec H1_1 ping -c 5 192.168.1.2
