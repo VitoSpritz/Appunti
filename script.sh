@@ -1,5 +1,6 @@
+#!/bin/bash
 #inizio con lo script in bash
-#/bin/root
+
 sudo ip netns add H1_1
 sudo ip netns add H1_2
 sudo ip netns add H2_1
