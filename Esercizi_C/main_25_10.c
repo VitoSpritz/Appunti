@@ -299,6 +299,42 @@ void es4_char(){
 
 }
 
+void es5_char(){
+
+    char stringa[100];
+    printf("Inserire l'intervallo in input \n");
+    scanf("%s", &stringa);
+    for(int i = 0; i < strlen(stringa); i++){
+
+        stringa[i] = toupper(stringa[i]);
+    }
+
+    char p, d;
+
+    for(int i = 0; i < strlen(stringa); i++){
+        if(stringa[i] == '-'){
+            p = stringa[i - 1];
+            d = stringa[i + 1];
+        }
+    }
+
+    printf("primo %d, secodno %d\n" , (int)p, d);
+
+    if((int) p < (int) d){
+        int temp = (int) p;
+        for(int i = (int) p;i < (int) d; i++){
+
+            printf("%c", i);
+        }
+
+    }
+
+    else{
+        printf("Intervallo non valido\n");
+    }
+
+}
+
 void es1_stringhe(){
 
     printf("Inserire una stringa\n");
@@ -373,10 +409,11 @@ int main() {
     //es2_char();
     //es3_char();
     //es4_char();
+    es4_char();
     //es1_matrici();
     //es2_matrici();
     //es1_stringhe();
-    es2_stringhe();
+    //es2_stringhe();
     //pointers();
 
     return 0;
