@@ -302,7 +302,7 @@ void es4_char(){
 void es5_char(){
 
     char stringa[100];
-    printf("Inserire l'intervallo in input \n");
+    printf("Inserire un intervallo in input tipo a-g \n");
     scanf("%s", &stringa);
     for(int i = 0; i < strlen(stringa); i++){
 
