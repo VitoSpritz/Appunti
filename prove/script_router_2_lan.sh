@@ -1,7 +1,5 @@
 #!bin/bash
 
-
-
 sudo ip net add H1_1
 sudo ip net add H1_2
 sudo ip net add H2_1
