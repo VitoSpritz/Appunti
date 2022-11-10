@@ -73,3 +73,25 @@ sudo ip netns exec H2_2 ip addr add 192.168.2.2/24 dev veth2_2
 #adesso faccio un ping  un altro host 
 sudo ip netns exec H1_1 ping -c 5 192.168.1.2
 
+sudo ip netns add GTW
+sudo ip link add veth_gtw_1 type veth peer eth_gtw_1
+sudo ip link add veth_gtw_2 type veth peer eth_gtw_2
+
+sudo ip l set eth_gtw_1 master LAN
+sudo ip l set eth_gtw_2 master LAN2
+
+
+sudo ip link set veth_gtw_1 netns GTW
+sudo ip link set veth_gtw_2 netns GTW
+
+
+sudo ip link set eth_gtw_1 up
+sudo ip link set eth_gtw_2 up
+
+
+sudo ip netns exec GTW ip link set veth_gtw_1 up
+sudo ip netns exec GTW ip link set veth_gtw_2 up
+
+
+sudo ip netns exec GTW ip addr add 137.204.1.254/24 dev veth_gtw_1
+sudo ip netns exec GTW ip addr add 137.204.2.254/24 dev veth_gtw_2
