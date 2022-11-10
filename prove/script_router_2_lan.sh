@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 sudo ip net add H1_1
 sudo ip net add H1_2
@@ -26,7 +26,7 @@ sudo ip l set eth2_2 master LAN2
 
 sudo ip l set eth1_1 up
 sudo ip l set eth1_2 up
-sudo ip l set eth2_2 up
+sudo ip l set eth2_1 up
 sudo ip l set eth2_2 up
 
 sudo ip l set LAN1 up
@@ -40,7 +40,7 @@ sudo ip netns exec H2_2 ip l set veth2_2 up
 sudo ip netns exec H1_1 ip addr add 192.168.10.1/24 dev veth1_1
 sudo ip netns exec H1_2 ip addr add 192.168.10.2/24 dev veth1_2
 sudo ip netns exec H2_1 ip addr add 192.168.20.1/24 dev veth2_1
-sudo ip netns exec H2_2 ip addr add 192.168.20.2/24 dve veth2_2
+sudo ip netns exec H2_2 ip addr add 192.168.20.2/24 dev veth2_2
 
 sudo ip link add veth_gtw_1 type veth peer eth_gtw_1
 sudo ip link add veth_gtw_2 type veth peer eth_gtw_2
@@ -57,15 +57,18 @@ sudo ip link set eth_gtw_2 up
 sudo ip netns exec GTW ip link set veth_gtw_1 up
 sudo ip netns exec GTW ip link set veth_gtw_2 up
 
-sudo ip net exec GTW ip l addr add 192.168.1.254/24 dev veth_gtw_1
-sudo ip net exec GTW ip l addr add 192.168.2.254/24 dev veth_gtw_2
+sudo ip net exec GTW ip addr add 192.168.10.254/24 dev veth_gtw_1
+sudo ip net exec GTW ip addr add 192.168.20.254/24 dev veth_gtw_2
 
+#aggiungo il default gateway agli host
 sudo ip net exec H1_1 ip route add default via 192.168.10.254
 sudo ip net exec H1_2 ip route add default via 192.168.10.254
 sudo ip net exec H2_1 ip route add default via 192.168.20.254
 sudo ip net exec H2_2 ip route add default via 192.168.20.254
 
+#permetto al router di inviare i pacchetti ad altre interfacce 
 sudo ip net exec GTW sysctl -w net.ipv4.ip_forward=1
 
-#ora con i ping dovrebbe andare
+sudo ip net exec H1_1 ping -c 5 192.168.20.2
 
+#ora con i ping dovrebbe andare
