@@ -402,6 +402,99 @@ void es2_stringhe(){
 
 }
 
+
+int funzione_es1(){
+
+    int n, l;
+    printf("Inserire il primo valore\n");
+    scanf("%d", &n);
+    printf("Inserer il secondo valore\n");
+    scanf("%d", &l);
+
+    if(n > l)
+        return n;
+    else
+        return l;
+}
+
+void funzione_es2(){
+
+    int n, l;
+    printf("Inserire un intervallo con divisione -\n");
+    do {
+        scanf("%d-%d", &n, &l);
+    }while (n > l);
+    fflush(stdin);
+    char c;
+    printf("Inserire il carattere da inserire nella stringa\n");
+    scanf("%c", &c);
+
+    int v[l + 1];
+    for(int i = 0; i < l + 1; i++){
+
+        if(i >= n && i <= l){
+            v[i] = c;
+        }
+        else
+            v[i] = ' ';
+    }
+    v[l] = '\0';
+    for(int i = 0; i < l + 1; i++){
+
+        printf("%c", v[i]);
+    }
+}
+
+void funzione_es3(){
+
+    int n, l;
+    printf("Inserire un intervallo con divisione -\n");
+    scanf("%d-%d", &n, &l);
+
+    fflush(stdin);
+    char c;
+    printf("Inserire il carattere da inserire nella stringa\n");
+    scanf("%c", &c);
+
+    for(int i = 0; i < l; i++){
+        for(int j = 0; j < n; j++){
+            printf("%c", c);
+        }
+        printf("\n");
+    }
+
+}
+
+void funzione_es4(int n, int l){
+
+    int temp = 0;
+
+    if(n < l){
+        temp = n;
+        n = l;
+        l = temp;
+    }
+}
+
+int funzione_es5(){
+
+    double d = 0, n = 0;
+    printf("Inserire la base e l'esponente\n");
+    scanf("%f, %f", &n, &d);
+    if(n == 0 && d == 0){
+        printf("Valore indefinito\n");
+        return 0;
+    }
+    if(n == 0)
+        return 0;
+    if(d == 0)
+        return 1;
+
+    double r = pow(n, d);
+    return r;
+
+}
+
 int main() {
 
     //es_6_arr();
@@ -409,12 +502,23 @@ int main() {
     //es2_char();
     //es3_char();
     //es4_char();
-    es4_char();
+    //es4_char();
     //es1_matrici();
     //es2_matrici();
     //es1_stringhe();
     //es2_stringhe();
     //pointers();
+    //printf("Valore piu' piccolo :%d", funzione_es1());
+    //funzione_es2();
+    //funzione_es3();
+    
+    /*int n, l;
+    printf("Inserire i valori i due valori divisi da spazio\n");
+    scanf("%d %d", &n, &l);
+    funzione_es4(&n, &l);
+    printf("%d, %d",n, l);*/
+    
+    funzione_es5();
 
     return 0;
 }
