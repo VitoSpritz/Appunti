@@ -41,7 +41,6 @@
   sudo ip net exec H2_1 ip addr add 192.168.2.1/24 dev veth2_1
   
   sudo ip l set eth1_gtw1 master LAN1
-  ip -c l
   sudo ip l set eth1_gtw1 up
   sudo ip l set eth2_gtw1 master LAN2
   sudo ip l set eth2_gtw2 master LAN2
@@ -49,7 +48,6 @@
   sudo ip l set eth1_gtw2 master up
   sudo ip l set eth1_gtw2 up
   sudo ip l set veth1_gtw1 netns GTW1
-  ip net
   
   sudo ip l set veth1_gtw2 netns GTW2
   sudo ip net exec GTW1 ip addr add 192.168.1.254/24 dev veth1_gtw1
@@ -58,13 +56,13 @@
   sudo ip net exec H1_2 ip route add default via 192.168.1.254
   sudo ip net exec H2_2 ip route add default via 192.168.2.254
   sudo ip net exec H2_1 ip route add default via 192.168.2.254
-  ip -c l
+  
   sudo ip l set LAN1 up
   sudo ip l set LAN2 up
   
   sudo ip l set eth1_gtw1 up
   sudo ip l set eth1_gtw2 up
-  ip -c l
+  
   sudo ip net exec GTW1 ip -c l
   sudo ip net exec GTW1 ip l set veth1_gtw1 up
   sudo ip net exec GTW2 ip l set veth1_gtw2 up
@@ -92,10 +90,7 @@
   sudo ip l set Transport up
   sudo ip net exec H1_1 ping 192.168..1
   sudo ip net exec H1_1 ping 192.168.2.1
-  sudo ip net exec H1_1 ip r
-  sudo ip net exec H1_1 ip -c a
-  sudo ip net exec H1_1 ip -c r a
-  sudo ip net exec H1_1 ip -c r
+  
   sudo ip net exec GTW2 sysctl -w net.ipv4.ip_forward=1
   sudo ip net exec GTW1 sysctl -w net.ipv4.ip_forward=1
   sudo ip net exec H1_1 ping 192.168.2.1
@@ -118,13 +113,8 @@
   sudo ip net exec GTW3 ip addr add 192.168.3.254/24 dev veth3_gtw3
   sudo ip net exec H3_3 ip route add default via 192.168.3.254
   sudo ip net exec H3_1 ip route add default via 192.168.3.254
-  sudo ip net exec H3_1 ip -c a
-  sudo ip net exec H3_1 ip -c r
-  sudo ip net exec GTW3 ip -c a
-  sudo ip net exec GTW3 ip -c r
-  sudo ip -c l
+  
   sudo ip l set LAN3 up
-  sudo ip net exec GTW3 ip -c l
   sudo ip l add eth_t3 type veth peer veth_t3
   sudo ip l set eth_t3 master Transport
   sudo ip l set veth_t3 netns GTW3
@@ -141,8 +131,6 @@
   sudo ip net exec GTW1 ip route add 192.168.3.0/24 via 192.168.4.3 
   sudo ip net exec GTW1 ip route add 192.168.2.0/24 via 192.168.4.2
   
-  sudo ip net exec GTW3 ip -c a
-  sudo ip net exec GTW3 ip -c r
   sudo ip net exec GTW3 route del default
   sudo ip net exec GTW2 route del default
   sudo ip net exec GTW1 route del default
