@@ -495,6 +495,18 @@ int funzione_es5(){
 
 }
 
+void puntatori_es1(int *a, int *b){
+
+    printf("valore 1 :%d e valore 2 :%d con indirizzo %p, %p\n", *a, *b, a, b);
+
+    int temp = *a;
+
+    *a = *b;
+    *b = temp;
+
+    printf("valore 1 :%d e valore 2 :%d con indirizzo %p, %p", *a, *b, a, b);
+}
+
 int main() {
 
     //es_6_arr();
@@ -518,7 +530,10 @@ int main() {
     funzione_es4(&n, &l);
     printf("%d, %d",n, l);*/
     
-    funzione_es5();
+    //funzione_es5();
+    
+    int a = 10, b = 5;
+    puntatori_es1(&a, &b);
 
     return 0;
 }
