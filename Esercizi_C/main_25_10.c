@@ -4,6 +4,7 @@
 #include <time.h>
 #include <ctype.h>
 #include <math.h>
+#define N 10
 
 void es_6_arr(){
 
@@ -507,6 +508,74 @@ void puntatori_es1(int *a, int *b){
     printf("valore 1 :%d e valore 2 :%d con indirizzo %p, %p", *a, *b, a, b);
 }
 
+int *minimo(int v[], int n){
+
+    int f = 0;
+    for(int i = 0; i < n; i++){
+        if(i == 0)
+            f = v[i];
+        if(f > v[i])
+            f = v[i];
+    }
+
+    for (int i = 0; i < n; ++i) {
+        if(f == v[i]){
+            return v[i];
+            break;
+        }
+    }
+
+}
+
+void puntatori_es4(){
+    srand(time(NULL));
+
+    int V[N];
+
+    for(int i = 0; i < N; i++){
+        V[i] = rand() % 10 + 1;
+    }
+
+    for(int i = 0; i < N; i++){
+        printf("%d\n", V[i]);
+    }
+
+    int *p = &V[0];
+
+    int temp = 0;
+    for(int i = 0; i < N; i++){
+        for(int j = 0; j < N; j++){
+            if(*(p + i) < *(p + j)){
+                temp = *(p + i);
+                *(p + i) = *(p + j);
+                *(p + j) = temp;
+            }
+        }
+    }
+
+    printf("\n");
+    for(int i = 0; i < N; i++){
+        printf("%d\n", *(p + i));
+    }
+}
+
+void puntatori_es5(char c[]){
+
+    char temp[strlen(c)];
+    for (int i = 0; i < strlen(c); ++i) {
+        temp[i] = *(c + i);
+    }
+    for (int i = 0; i < strlen(c); ++i) {
+        *(c + i) = temp[strlen(c) - 1 - i];
+    }
+
+    for(int i = 0; i < strlen(c); i++){
+        printf("%c", *(c + i));
+    }
+
+
+}
+
 int main() {
 
     //es_6_arr();
@@ -523,17 +592,31 @@ int main() {
     //printf("Valore piu' piccolo :%d", funzione_es1());
     //funzione_es2();
     //funzione_es3();
-    
+
     /*int n, l;
     printf("Inserire i valori i due valori divisi da spazio\n");
     scanf("%d %d", &n, &l);
     funzione_es4(&n, &l);
     printf("%d, %d",n, l);*/
-    
+
     //funzione_es5();
-    
-    int a = 10, b = 5;
-    puntatori_es1(&a, &b);
+
+    /*int a = 10, b = 5;
+    puntatori_es1(&a, &b);*/
+
+    /*int v[5] = {10, 20, 30, 2 ,52};
+    int *p;
+    *p = minimo(v, 5);
+    printf("Il valore minimo e': %d, %p", minimo(v, 5), minimo(v, 5));*/
+
+    //puntatori_es4();
+
+    char str[100], *ptr;
+
+    printf("Inserire la stringa\n");
+    scanf("%s", str);
+    ptr = str;
+    puntatori_es5(ptr);
 
     return 0;
 }
