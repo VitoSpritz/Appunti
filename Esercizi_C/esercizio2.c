@@ -64,8 +64,6 @@ void cercaEsame(char t[]){
 
     struct structEsame *temp = first;
 
-    if(first == NULL)
-        return;
     while(strcmp(temp->nTessera, t) != 0){
 
         first = first->next;
@@ -78,7 +76,24 @@ void cercaEsame(char t[]){
         printf("Id esame: %d\n", temp->idEsame);
         printf("Data esame: %s\n\n", temp->dataEsame);
     }
+}
 
+void cancella(char t[]){
+
+    current = first;
+    struct structEsame *previous = first;
+
+    while(current != NULL){
+        if(strcmp(current->nTessera, t) != 0){
+            previous = current;
+            current = current->next;
+
+        }
+
+        if(strcmp(current->nTessera, t) == 0){
+            previous->next = current->next;
+        }
+    }
 }
 
 int main(){
@@ -88,7 +103,7 @@ int main(){
     current = (struct structEsame*) malloc(sizeof (struct structEsame));
     do {
         printf("Inserire il numero di elementi\n"),
-        scanf("%d",&n);
+                scanf("%d",&n);
         fflush(stdin);
     }while(n < 0 || n > 5);
 
@@ -101,7 +116,13 @@ int main(){
 
     char tessera[12];
     printf("Inserire il valore di tessera sanitaria da cercare\n");
-    scanf("%s", &tessera);
+    scanf("%s", tessera);
+    fflush(stdin);
     cercaEsame(tessera);
+
+    printf("Inserire il valore di tessera sanitaria da eliminare\n");
+    scanf("%s", tessera);
+    fflush(stdin);
+    cancella(tessera);
 
 }
