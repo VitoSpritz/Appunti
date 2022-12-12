@@ -128,9 +128,9 @@ int main() {
     do {
         printf("Inserire il giorno\n");
         scanf("%d", &calendario.giorno);
-        printf("Inserire il giorno\n");
+        printf("Inserire il mese\n");
         scanf("%s", calendario.mese);
-        printf("Inserire il giorno\n");
+        printf("Inserire l'anno\n");
         scanf("%d", &calendario.anno);
 
     }while((calendario.giorno > 31 || calendario.giorno < 0) || calendario.anno < 0);
